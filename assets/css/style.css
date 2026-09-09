@@ -370,69 +370,86 @@ img { max-width: 100%; display: block; }
 }
 
 /* PROJECTS */
+/* PROJECTS */
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 800px; /* Limits width so cards don't stretch too wide on desktop */
+    margin: 0 auto;   /* Centers the vertical list */
 }
 
 .project-card {
     background: var(--white);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 28px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Image on left, content on right */
+    gap: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.project-media {
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+    background: var(--navy-mid);
+}
+
+.project-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-body {
+    padding: 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 20px;
+    gap: 12px;
 }
 
-.tag {
-    display: inline-block;
-    background: rgba(13, 148, 136, 0.1);
-    color: var(--teal);
-    font-weight: 600;
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 99px;
-    margin-bottom: 12px;
-}
-
-.project-top h3 {
-    font-size: 1.25rem;
+.project-body h3 {
+    font-size: 1.3rem;
     color: var(--navy);
 }
 
-.project-card p {
+.project-body p {
     color: var(--muted);
     font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .project-tools {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--navy);
+    color: var(--teal);
 }
 
 .project-links {
     display: flex;
     gap: 12px;
+    margin-top: 8px;
 }
 
-.link-btn {
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    color: var(--navy);
+/* Stack image on top of content on mobile screens */
+@media (max-width: 640px) {
+    .project-card {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-media {
+        height: 180px;
+    }
 }
 
-.link-btn.primary {
-    background: var(--navy);
-    color: white;
-    border-color: var(--navy);
-}
 
 /* SKILLS */
 .skills-grid {
