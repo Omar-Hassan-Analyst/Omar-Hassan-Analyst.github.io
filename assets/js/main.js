@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Optional: subtle shadow on scroll
     window.addEventListener('scroll', () => {
         if (window.scrollY > 15) {
             nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
